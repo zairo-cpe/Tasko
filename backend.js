@@ -5,6 +5,7 @@ const cors    = require('cors');
 const bcrypt  = require('bcrypt');
 const jwt     = require('jsonwebtoken');
 const { createClient } = require('@supabase/supabase-js');
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(cors());
@@ -67,4 +68,6 @@ app.post('/login', async (req, res) => {
   res.json({ message: `Welcome back, ${data.username}!`, token });
 });
 
-app.listen(4000, () => console.log('Server running on port 4000'));
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
