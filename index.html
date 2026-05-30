@@ -4,36 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tasko</title>
+  <link rel="icon" href="resc/icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div id="main">
-        <div id="display">
-        <img src="resc/loginPhoto.png" alt="Login Image">
-        </div>
-
-        <div id="loginTab">
-
-            <p id="title"><b>Tasko!</b></p>
-
-            <input type="text"     id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-
-            <div id="termsc">
-                <input type="checkbox" id="terms">
-                <label for="terms">By signing in you agree to the terms and conditions.</label>
-            </div>
-
-            <div id="btns">
-                <button id="loginBtn">Login</button>
-                <button id="registerBtn">Register</button>
-            </div>
-            <p id="message"></p>
-
-        </div>
+  <div id="center">
+    <p id="title"><b><span style="color: rgb(0, 69, 0);">t</span>asko.</b></p>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <div id="termsc">
+      <input type="checkbox" id="terms">
+      <label for="terms">By signing in you agree to the  <a href="">terms and conditions</a></label>
+    </div>
+    <div id="btns">
+      <button id="loginBtn">Login</button>
+      <button id="registerBtn">Register</button>
+    </div>
+    <p id="message"></p>
   </div>
-
   <script src="loginFrontend.js"></script>
 </body>
 </html>

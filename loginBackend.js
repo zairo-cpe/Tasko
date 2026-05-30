@@ -36,7 +36,7 @@ app.post('/register', async (req, res) => {
     return res.status(400).json({ error: msg });
   }
 
-  res.json({ message: 'Account created! You can now log in.' });
+  res.json({ message: 'Account created!' });
 });
 
 // LOGIN
