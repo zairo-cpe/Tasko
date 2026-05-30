@@ -1,8 +1,12 @@
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
+// Grab elements from the HTML by their IDs
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const message       = document.getElementById('message');
 
-const API = 'https:localhost:4000';
+// Your backend URL — change port if needed
+const API = 'http://localhost:4000';
 
+// Helper: sends data to a backend endpoint
 async function postData(endpoint) {
   const res = await fetch(`${API}${endpoint}`, {
     method: 'POST',
@@ -15,10 +19,16 @@ async function postData(endpoint) {
   return res.json();
 }
 
-document.getElementById("loginBtn").addEventListener('click', async () => {
+// Login button click
+document.getElementById('login-btn')
+  .addEventListener('click', async () => {
     const data = await postData('/login');
-})
+    message.textContent = data.message;
+  });
 
-document.getElementById("registerBtn").addEventListener('click', async () => {
+// Register button click
+document.getElementById('register-btn')
+  .addEventListener('click', async () => {
     const data = await postData('/register');
-})
+    message.textContent = data.message || data.error;
+  });

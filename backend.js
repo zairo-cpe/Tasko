@@ -1,20 +1,28 @@
+// ① Load .env first — always at the very top
 require('dotenv').config();
 
-const express = require('express');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const {createClient} = require('@supabase/supabase-js');
+// ② Import packages
+const express      = require('express');
+const cors         = require('cors');
+const bcrypt       = require('bcrypt');
+const { createClient } = require('@supabase/supabase-js');
 
+// ③ Create the Express app
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+// ④ Add middleware (must come AFTER app is created)
+app.use(cors());           // allow frontend to talk to backend
+app.use(express.json());  // parse JSON request bodies
 
+// ⑤ Connect to Supabase
 const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// ⑥ Routes
+
+// REGISTER — creates a new user
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const hashed = await bcrypt.hash(password, 10);
@@ -27,6 +35,7 @@ app.post('/register', async (req, res) => {
   res.json({ message: 'User registered successfully!' });
 });
 
+// LOGIN — checks credentials
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
