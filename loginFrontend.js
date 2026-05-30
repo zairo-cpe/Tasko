@@ -1,7 +1,6 @@
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const message       = document.getElementById('message');
-
 const API = 'https://tasko-cgm7.onrender.com';
 
 async function postData(endpoint) {
@@ -28,9 +27,14 @@ async function postData(endpoint) {
 
 document.getElementById('loginBtn').addEventListener('click', async () => {
   const data = await postData('/login');
-  if (data.token) localStorage.setItem('token', data.token);
-  // Fallback to data.error if login message isn't present
-  if (data.message || data.error) message.textContent = data.message || data.error;
+  if (data.token) {
+    localStorage.setItem('token', data.token);
+    // Redirect to profile page
+    window.location.href = 'profile.html';
+  } else {
+    // Show error message if login failed
+    message.textContent = data.message || data.error;
+  }
 });
 
 document.getElementById('registerBtn').addEventListener('click', async () => {
