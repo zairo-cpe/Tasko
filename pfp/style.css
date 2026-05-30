@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile</title>
-  <style>
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -47,23 +41,3 @@
     .profile-card a:hover {
       background: #1e40af;
     }
-  </style>
-</head>
-<body>
-  <article class="profile-card">
-    <h1>Profile</h1>
-    <p id="profileText">Checking login details...</p>
-    <a href="../login.html">Back to Login</a>
-  </article>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const username = params.get('username') || params.get('user');
-    const profileText = document.getElementById('profileText');
-    if (username) {
-      profileText.textContent = `Signed in as ${username}.`;
-    } else {
-      profileText.innerHTML = 'No user information found. Please <a href="../login.html">sign in</a> again.';
-    }
-  </script>
-</body>
-</html>
