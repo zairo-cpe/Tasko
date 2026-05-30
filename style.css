@@ -65,7 +65,7 @@ body{
     transform: translateY(-20px);
 }
 
-#message{
+#title{
     margin: 0;
 
     font-size: 60px;

@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasko</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasko</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div id="main">
-
+  <div id="main">
         <div id="display">
-            <img src="resc/loginPhoto.png" alt="Login Image">
+        <img src="resc/loginPhoto.png" alt="Login Image">
         </div>
 
         <div id="loginTab">
 
-            <p id="message">
-                <b>Tasko!</b>
-            </p>
+            <p id="title"><b>Tasko!</b></p>
 
-            <input type="text" id="username" placeholder="Username">
-
+            <input type="text"     id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
 
             <div id="termsc">
                 <input type="checkbox" id="terms">
-
-                <label for="terms">
-                    By signing in you agree to the terms and conditions.
-                </label>
+                <label for="terms">By signing in you agree to the terms and conditions.</label>
             </div>
+
             <div id="btns">
                 <button id="loginBtn">Login</button>
                 <button id="registerBtn">Register</button>
             </div>
+            <p id="message"></p>
+
         </div>
+  </div>
 
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

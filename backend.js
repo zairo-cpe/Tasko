@@ -1,43 +1,49 @@
-// ① Load .env first — always at the very top
 require('dotenv').config();
 
-// ② Import packages
-const express      = require('express');
-const cors         = require('cors');
-const bcrypt       = require('bcrypt');
+const express = require('express');
+const cors    = require('cors');
+const bcrypt  = require('bcrypt');
+const jwt     = require('jsonwebtoken');
 const { createClient } = require('@supabase/supabase-js');
 
-// ③ Create the Express app
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-// ④ Add middleware (must come AFTER app is created)
-app.use(cors());           // allow frontend to talk to backend
-app.use(express.json());  // parse JSON request bodies
-
-// ⑤ Connect to Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-// ⑥ Routes
-
-// REGISTER — creates a new user
+// REGISTER
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
+
+  if (!username || !password)
+    return res.status(400).json({ error: 'Username and password are required.' });
+
   const hashed = await bcrypt.hash(password, 10);
 
   const { error } = await supabase
     .from('users')
     .insert([{ username, password: hashed }]);
 
-  if (error) return res.status(400).json({ error: error.message });
-  res.json({ message: 'User registered successfully!' });
+  if (error) {
+    const msg = error.code === '23505'
+      ? 'Username already taken.'
+      : error.message;
+    return res.status(400).json({ error: msg });
+  }
+
+  res.json({ message: 'Account created! You can now log in.' });
 });
 
-// LOGIN — checks credentials
+// LOGIN
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
+
+  if (!username || !password)
+    return res.status(400).json({ message: 'Username and password are required.' });
 
   const { data, error } = await supabase
     .from('users')
@@ -46,14 +52,19 @@ app.post('/login', async (req, res) => {
     .single();
 
   if (error || !data)
-    return res.status(401).json({ message: 'Invalid credentials' });
+    return res.status(401).json({ message: 'Invalid credentials.' });
 
   const valid = await bcrypt.compare(password, data.password);
   if (!valid)
-    return res.status(401).json({ message: 'Invalid credentials' });
+    return res.status(401).json({ message: 'Invalid credentials.' });
 
-  res.json({ message: `Welcome back, ${data.username}!` });
+  const token = jwt.sign(
+    { id: data.id, username: data.username },
+    process.env.JWT_SECRET,
+    { expiresIn: '7d' }
+  );
+
+  res.json({ message: `Welcome back, ${data.username}!`, token });
 });
 
-// ⑦ Start the server — always last
 app.listen(4000, () => console.log('Server running on port 4000'));
