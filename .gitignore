@@ -1,0 +1,10 @@
+# Secret keys - never upload these
+.env
+.env.*
+
+# Auto-generated packages folder - too large for GitHub
+node_modules/
+
+# Other common ignores
+.DS_Store
+*.log

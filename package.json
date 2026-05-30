@@ -1,0 +1,28 @@
+{
+  "name": "tasko",
+  "version": "1.0.0",
+  "description": "Tasko is a web-based academic collaboration platform designed for students and learners.   It allows users to:",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zairo-cpe/Tasko.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zairo-cpe/Tasko/issues"
+  },
+  "homepage": "https://github.com/zairo-cpe/Tasko#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.2",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
