@@ -30,7 +30,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
   if (data.token) {
     localStorage.setItem('token', data.token);
     // Redirect to profile page
-    window.location.href = 'profile.html';
+    window.location.href = 'pfp/profile.html';
   } else {
     // Show error message if login failed
     message.textContent = data.message || data.error;
