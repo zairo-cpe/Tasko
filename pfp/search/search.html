@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <span class="logo">tasko</span>
+            <span class="label">/ search</span>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="search" id="search" placeholder="Search users here" autocomplete="off" spellcheck="false">
+                <span class="shortcut">⌘K</span>
+            </div>
+            <div id="status"></div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="search.js"></script>
+</body>
+</html>

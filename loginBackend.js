@@ -57,7 +57,7 @@ app.post('/login', async (req, res) => {
 
   const valid = await bcrypt.compare(password, data.password);
   if (!valid)
-    return res.status(401).json({ message: 'Invalid credentials.' });
+   return res.status(401).json({ message: 'Invalid credentials.' });
 
   const token = jwt.sign(
     { id: data.id, username: data.username },
@@ -70,4 +70,21 @@ app.post('/login', async (req, res) => {
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+// SEARCH USERS
+app.get('/search', async (req, res) => {
+  const { query } = req.query;
+
+  if (!query) return res.json([]);
+
+  const { data, error } = await supabase
+    .from('users')
+    .select('username')
+    .ilike('username', `%${query}%`)
+    .limit(12);
+
+  if (error) return res.status(500).json({ error: error.message });
+
+  res.json(data);
 });
