@@ -1,4 +1,5 @@
-body, html{
+body,
+html {
   margin: 0;
   gap: 10vw;
   display: flex;
@@ -8,7 +9,7 @@ body, html{
   overflow: hidden;
   background-color: rgb(38, 38, 38);
 }
-#header{
+#header {
   justify-content: space-between;
   display: flex;
   flex-direction: column;
@@ -18,9 +19,9 @@ body, html{
   background-color: rgb(52, 52, 52);
   border: 1px solid rgba(181, 181, 181, 0.417);
   padding: 2px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 1);
 }
-#work{
+#work {
   border-radius: 20px;
   background: linear-gradient(to bottom, rgb(41, 41, 41), rgb(24, 24, 24));
   align-self: center;
@@ -29,27 +30,27 @@ body, html{
   width: 75vw;
   height: 80vh;
   border: 1px solid rgba(181, 181, 181, 0.417);
-  box-shadow: 0px 10px 30px rgba(0,0,0,1);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 1);
 }
 
-button{
+button {
   display: flex;
   height: 50%;
   width: 6%;
   background-color: rgba(0, 0, 0, 0.282);
 }
 
-a{
+a {
   color: rgb(0, 113, 26);
   transition: transform 0.2s;
 }
 
-button{
+button {
   display: flex;
   height: 5%;
   width: 100%;
 }
 
-a:hover{
+a:hover {
   transform: scale(1.1);
 }
