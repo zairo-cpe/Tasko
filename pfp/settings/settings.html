@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <link rel="stylesheet" href="../style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
 </head>
 <body>
-    
+    <div id="header">
+        <a href="../profile.html" id="editProfile">
+            <img src="../resc/pfp.png" alt="Profile">
+        </a>
+        <div id="options">
+            <a href="../search/search.html" id="search">
+                <img src="../resc/search.png" alt="Search">
+            </a>
+            <a href="../settings/settings.html" id="out">
+                <img src="../resc/settings.png" alt="Settings">
+            </a>
+            <a href="../../index.html" id="out">
+                <img src="../resc/logout.png" alt="Logout">
+            </a>
+        </div>
+    </div>
+
+    <div id="work">
+        <div class="page-shell">
+            <div class="simple-panel">
+                <h1>Settings</h1>
+                <p>Session controls for your Tasko account.</p>
+
+                <p>Signed in as: <strong id="settingsUsername">Loading...</strong></p>
+
+                <div class="actions-row">
+                    <button id="logoutBtn" type="button">Log out</button>
+                    <button id="clearDataBtn" type="button">Clear local session</button>
+                    <a class="back-link" href="../profile.html">Back to profile</a>
+                </div>
+
+                <div id="settingsStatus" class="status-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="settingsFrontend.js"></script>
 </body>
 </html>

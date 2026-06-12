@@ -106,6 +106,60 @@ app.get('/profile', async (req, res) => {
   res.json(data);
 });
 
+app.put('/profile/username', async (req, res) => {
+  const { currentUsername, newUsername } = req.body;
+
+  if (!currentUsername || !newUsername) {
+    return res.status(400).json({ error: 'Current username and new username are required.' });
+  }
+
+  if (currentUsername === newUsername) {
+    return res.status(400).json({ error: 'New username must be different.' });
+  }
+
+  const { data: existingUser, error: lookupError } = await supabase
+    .from('users')
+    .select('id, username')
+    .eq('username', currentUsername)
+    .single();
+
+  if (lookupError || !existingUser) {
+    return res.status(404).json({ error: 'User not found.' });
+  }
+
+  const { data: duplicateUser } = await supabase
+    .from('users')
+    .select('id')
+    .eq('username', newUsername)
+    .maybeSingle();
+
+  if (duplicateUser) {
+    return res.status(400).json({ error: 'Username already taken.' });
+  }
+
+  const documentsUpdate = await supabase
+    .from('documents')
+    .update({ username: newUsername })
+    .eq('username', currentUsername);
+
+  if (documentsUpdate.error) {
+    return res.status(500).json({ error: documentsUpdate.error.message });
+  }
+
+  const { data, error } = await supabase
+    .from('users')
+    .update({ username: newUsername })
+    .eq('username', currentUsername)
+    .select('id, username')
+    .single();
+
+  if (error || !data) {
+    return res.status(500).json({ error: error ? error.message : 'Could not update username.' });
+  }
+
+  res.json({ message: 'Username updated.', user: data });
+});
+
 // DOCUMENTS
 app.get('/documents', async (req, res) => {
   const { username } = req.query;

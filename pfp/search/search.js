@@ -3,10 +3,12 @@ const resultsEl = document.getElementById('results')
 const statusEl  = document.getElementById('status')
 
 let debounceTimer
+let currentQuery = ''
 
 searchEl.addEventListener('input', (e) => {
   clearTimeout(debounceTimer)
   const query = e.target.value.trim()
+  currentQuery = query
 
   if (!query) {
     resultsEl.innerHTML = ''
@@ -50,14 +52,77 @@ function renderResults(users, query) {
     const highlighted = highlight(name, query)
 
     return `
-    <div class="user-card" style="animation-delay:${i * 30}ms">
+    <button type="button" class="user-card user-card-button" data-username="${name}" style="animation-delay:${i * 30}ms">
       <div class="avatar">${initials}</div>
       <div class="user-info">
         <span class="user-name">${highlighted}</span>
         <span class="user-handle">@${name}</span>
       </div>
-    </div>`
+    </button>`
   }).join('')
+
+  resultsEl.querySelectorAll('.user-card-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      showUserDocuments(button.dataset.username)
+    })
+  })
+}
+
+async function showUserDocuments(username) {
+  if (!username) return
+
+  statusEl.textContent = `loading documents for @${username}...`
+  resultsEl.innerHTML = ''
+
+  try {
+    const res = await fetch(`https://tasko-cgm7.onrender.com/documents?username=${encodeURIComponent(username)}`)
+    const documents = await res.json()
+
+    if (!res.ok) {
+      statusEl.textContent = documents.error || 'could not load documents.'
+      return
+    }
+
+    statusEl.innerHTML = `
+      showing saved documents for <strong>@${username}</strong>
+      <button type="button" class="back-button" id="backToSearch">back</button>
+    `
+
+    resultsEl.innerHTML = renderDocumentTable(documents)
+
+    const backButton = document.getElementById('backToSearch')
+    if (backButton) {
+      backButton.addEventListener('click', () => {
+        if (currentQuery) {
+          searchUsers(currentQuery)
+        } else {
+          resultsEl.innerHTML = ''
+          statusEl.textContent = ''
+        }
+      })
+    }
+  } catch (err) {
+    console.error('Document load error:', err)
+    statusEl.textContent = 'something went wrong.'
+  }
+}
+
+function renderDocumentTable(documents) {
+  if (!documents.length) {
+    return `
+      <div class="no-results">
+        <span>∅</span>
+        no saved documents for this user
+      </div>`
+  }
+
+  return `
+    <div class="document-list document-list--compact">
+      ${documents.map((document) => `
+        <article class="documentCard documentCard--compact">
+          <h3>${document.title}</h3>
+        </article>`).join('')}
+    </div>`
 }
 
 function highlight(text, query) {

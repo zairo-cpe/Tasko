@@ -164,6 +164,93 @@ html {
   padding: 8px 12px;
 }
 
+.page-shell {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.simple-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid rgba(181, 181, 181, 0.2);
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.simple-panel h1,
+.simple-panel h2 {
+  margin: 0;
+  color: rgb(240, 240, 240);
+}
+
+.simple-panel p {
+  margin: 0;
+  color: rgba(224, 224, 224, 0.82);
+  line-height: 1.5;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-group label {
+  color: rgba(224, 224, 224, 0.78);
+  font-size: 0.82rem;
+}
+
+.field-group input,
+.field-group textarea {
+  width: 100%;
+  border: 1px solid rgba(181, 181, 181, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(240, 240, 240);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+}
+
+.field-group input::placeholder,
+.field-group textarea::placeholder {
+  color: rgba(224, 224, 224, 0.45);
+}
+
+.actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-line {
+  min-height: 1.2em;
+  color: rgba(224, 224, 224, 0.78);
+}
+
+.status-line[data-state="error"] {
+  color: rgb(255, 132, 132);
+}
+
+.status-line[data-state="success"] {
+  color: rgb(152, 235, 164);
+}
+
+.back-link {
+  color: rgb(152, 235, 164);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  transform: none;
+  text-decoration: underline;
+}
+
 #profileText {
   margin: 0;
   color: rgb(224, 224, 224);

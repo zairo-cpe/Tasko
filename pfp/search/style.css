@@ -175,6 +175,19 @@ header {
     animation: fadeSlide 0.18s ease both;
 }
 
+.user-card-button {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+}
+
+.user-card-button:focus-visible,
+.back-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
 .user-card:hover {
     border-color: var(--border-hi);
     background: var(--surface2);
@@ -231,4 +244,44 @@ header {
     font-size: 1.6rem;
     margin-bottom: 10px;
     opacity: 0.4;
+}
+
+.document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.documentCard {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.documentCard h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.documentCard--compact {
+    background: var(--surface2);
+    color: var(--text);
+}
+
+.back-button {
+    margin-left: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font: inherit;
+    cursor: pointer;
 }
