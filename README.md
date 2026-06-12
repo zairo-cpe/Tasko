@@ -1,4 +1,4 @@
-# tasko.
+# tasko
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/91b7ddd2-efaf-4223-b12b-b058f7bed9a3" />
 
 [tasko.](https://zairo-cpe.github.io/Tasko/) is a web-based academic collaboration platform designed for students and learners.  
