@@ -41,6 +41,129 @@ html {
   padding: 24px;
 }
 
+#profilePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 20px;
+}
+
+#documentsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid rgba(181, 181, 181, 0.2);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.panelHeader h2 {
+  margin: 0;
+  color: rgb(224, 224, 224);
+  font-size: 1.1rem;
+}
+
+#newDocumentBtn,
+.formActions button,
+#documentForm button {
+  cursor: pointer;
+  border: 1px solid rgba(181, 181, 181, 0.35);
+  background: rgb(54, 54, 54);
+  color: rgb(240, 240, 240);
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+#documentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#documentForm input,
+#documentForm textarea {
+  width: 100%;
+  border: 1px solid rgba(181, 181, 181, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  color: rgb(240, 240, 240);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  resize: vertical;
+}
+
+#documentForm input::placeholder,
+#documentForm textarea::placeholder {
+  color: rgba(224, 224, 224, 0.45);
+}
+
+.formActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#documentStatus {
+  min-height: 1.2em;
+  color: rgba(224, 224, 224, 0.75);
+}
+
+#documentStatus[data-state="error"] {
+  color: rgb(255, 132, 132);
+}
+
+#documentList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.documentCard {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(181, 181, 181, 0.15);
+}
+
+.documentCard h3 {
+  margin: 0 0 8px;
+  color: rgb(240, 240, 240);
+}
+
+.documentCard p,
+.emptyState {
+  margin: 0;
+  color: rgba(224, 224, 224, 0.8);
+  line-height: 1.5;
+}
+
+.documentActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.documentActions button {
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+}
+
 #profileText {
   margin: 0;
   color: rgb(224, 224, 224);
@@ -54,17 +177,6 @@ button {
   height: 50%;
   width: 6%;
   background-color: rgba(0, 0, 0, 0.282);
-}
-
-a {
-  color: rgb(0, 113, 26);
-  transition: transform 0.2s;
-}
-
-button {
-  display: flex;
-  height: 5%;
-  width: 100%;
 }
 
 a:hover {

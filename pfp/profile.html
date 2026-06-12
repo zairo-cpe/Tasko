@@ -24,8 +24,29 @@
     </div>
   </div>
   <div id="work">
-    <div id="profileCard">
-      <p id="profileText">Loading profile...</p>
+    <div id="profilePanel">
+      <div id="profileCard">
+        <p id="profileText">Loading profile...</p>
+      </div>
+
+      <div id="documentsPanel">
+        <div class="panelHeader">
+          <h2>Documents</h2>
+          <button id="newDocumentBtn" type="button">New document?</button>
+        </div>
+
+        <form id="documentForm" class="hidden">
+          <input id="documentTitle" type="text" placeholder="Document title" maxlength="120" />
+          <textarea id="documentContent" rows="6" placeholder="Write your document..."></textarea>
+          <div class="formActions">
+            <button type="submit">Save document</button>
+            <button id="cancelDocumentBtn" type="button">Cancel</button>
+          </div>
+        </form>
+
+        <div id="documentStatus"></div>
+        <div id="documentList"></div>
+      </div>
     </div>
   </div>
   <script src="profileFrontend.js"></script>

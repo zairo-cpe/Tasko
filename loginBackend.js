@@ -106,6 +106,101 @@ app.get('/profile', async (req, res) => {
   res.json(data);
 });
 
+// DOCUMENTS
+app.get('/documents', async (req, res) => {
+  const { username } = req.query;
+
+  if (!username) {
+    return res.status(400).json({ error: 'Username is required.' });
+  }
+
+  const { data, error } = await supabase
+    .from('documents')
+    .select('id, username, title, content, created_at')
+    .eq('username', username)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.json(data);
+});
+
+app.post('/documents', async (req, res) => {
+  const { username, title, content } = req.body;
+
+  if (!username || !title) {
+    return res.status(400).json({ error: 'Username and title are required.' });
+  }
+
+  const { data, error } = await supabase
+    .from('documents')
+    .insert([
+      {
+        username,
+        title,
+        content: content || ''
+      }
+    ])
+    .select('id, username, title, content, created_at')
+    .single();
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.status(201).json(data);
+});
+
+app.put('/documents/:id', async (req, res) => {
+  const { id } = req.params;
+  const { username, title, content } = req.body;
+
+  if (!username || !title) {
+    return res.status(400).json({ error: 'Username and title are required.' });
+  }
+
+  const { data, error } = await supabase
+    .from('documents')
+    .update({
+      title,
+      content: content || ''
+    })
+    .eq('id', id)
+    .eq('username', username)
+    .select('id, username, title, content, created_at')
+    .single();
+
+  if (error || !data) {
+    return res.status(404).json({ error: 'Document not found.' });
+  }
+
+  res.json(data);
+});
+
+app.delete('/documents/:id', async (req, res) => {
+  const { id } = req.params;
+  const { username } = req.body;
+
+  if (!username) {
+    return res.status(400).json({ error: 'Username is required.' });
+  }
+
+  const { data, error } = await supabase
+    .from('documents')
+    .delete()
+    .eq('id', id)
+    .eq('username', username)
+    .select('id');
+
+  if (error || !data || data.length === 0) {
+    return res.status(404).json({ error: 'Document not found.' });
+  }
+
+  res.json({ message: 'Document deleted.' });
+});
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
