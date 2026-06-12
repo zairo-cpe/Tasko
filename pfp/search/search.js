@@ -20,7 +20,7 @@ searchEl.addEventListener('input', (e) => {
 
 async function searchUsers(query) {
   try {
-    const res  = await fetch(`http://localhost:4000/search?query=${encodeURIComponent(query)}`)
+    const res  = await fetch(`https://tasko-cgm7.onrender.com/search?query=${encodeURIComponent(query)}`)
     const data = await res.json()
 
     statusEl.textContent = data.length

@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /workspaces/Tasko && node --check loginBackend\\.js && node --check pfp/profileFrontend\\.js$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
